@@ -1,6 +1,6 @@
 # locations of resource files in the package
 pkg_resource <- function(...) {
-  system.file(..., package = "unhcrstyle")
+  system.file(..., package = "unhcRstyle", mustWork = TRUE)
 }
 
 #' @name using

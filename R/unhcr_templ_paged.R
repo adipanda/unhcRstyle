@@ -11,15 +11,25 @@
 #'
 #'
 unhcr_templ_paged = function(...) {
-  cssfile <- function(...) {
-    system.file("resources", "css", paste0(..., ".css"), package = "unhcRstyle")
-  }
+  # arguments
+  fonts_css <-
+    pkg_resource("resources/css/unhcr-fonts.css")
+  page_css <-
+    pkg_resource("resources/css/unhcr-page.css")
+  unhcr_css <-
+    pkg_resource("resources/css/unhcr.css")
 
-  svgfile <- function(...) {
-    system.file("resources", "svg", paste0(..., ".svg"), package = "unhcRstyle")
-  }
+  # default backcover
+  unhcr_backcover <-
+    pkg_resource("resources/utils/unhcr-backcover.svg")
+
+
+
+
+  # template
   pagedown::html_paged(
-    css = c(cssfile('unhcr-fonts'), cssfile('unhcr-page'), cssfile('unhcr')),
+    css = c(fonts_css, page_css, unhcr_css),
+    back_cover = unhcr_backcover,
     ...)
 
 
