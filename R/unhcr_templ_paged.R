@@ -10,7 +10,7 @@
 #' @export unhcr_templ_paged
 #'
 #'
-unhcr_templ_paged = function(back_img = "0", ...) {
+unhcr_templ_paged = function(front_img = NULL, ...) {
   # arguments
   fonts_css <-
     pkg_resource("resources/css/unhcr-fonts.css")
@@ -18,19 +18,22 @@ unhcr_templ_paged = function(back_img = "0", ...) {
     pkg_resource("resources/css/unhcr-page.css")
   unhcr_css <-
     pkg_resource("resources/css/unhcr.css")
-  pandoc_html <-
-    pkg_resource("resources/html/debug_paged.html")
 
-  # default backcover
-  if (back_img == "0") {
-    back_img <-
-      pkg_resource("resources/utils/unhcr-backcover.svg")
+  # default front-cover
+  if (is.null(front_img)) {
+    front_img <-
+      pkg_resource("resources/utils/cover_placeholder.jpg")
   }
+
+  # default back-cover
+  back_img <-
+    pkg_resource("resources/utils/unhcr-backcover.svg")
+
 
     # template
   pagedown::html_paged(
     css = c(fonts_css, page_css, unhcr_css),
-    template = pandoc_html,
+    front_cover = front_img,
     back_cover = back_img,
     ...)
 

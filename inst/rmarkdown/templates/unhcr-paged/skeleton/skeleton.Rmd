@@ -21,6 +21,7 @@ author:
 output: 
   unhcRstyle::unhcr_templ_paged: 
     # Change to false to remove table of content
+    front_img: 
     toc: true
     # Change to true to add number in front of chapters
     number_sections: false
