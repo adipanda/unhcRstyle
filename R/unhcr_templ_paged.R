@@ -10,16 +10,31 @@
 #' @export unhcr_templ_paged
 #'
 #'
-unhcr_templ_paged = function(...) {
-  cssfile <- function(...) {
-    system.file("resources", "css", paste0(..., ".css"), package = "unhcRstyle")
+unhcr_templ_paged = function(front_img = NULL, ...) {
+  # arguments
+  fonts_css <-
+    pkg_resource("resources/css/unhcr-fonts.css")
+  page_css <-
+    pkg_resource("resources/css/unhcr-page.css")
+  unhcr_css <-
+    pkg_resource("resources/css/unhcr.css")
+
+  # default front-cover
+  if (is.null(front_img)) {
+    front_img <-
+      pkg_resource("resources/utils/cover_placeholder.jpg")
   }
 
-  svgfile <- function(...) {
-    system.file("resources", "svg", paste0(..., ".svg"), package = "unhcRstyle")
-  }
+  # default back-cover
+  back_img <-
+    pkg_resource("resources/utils/unhcr-backcover.svg")
+
+
+    # template
   pagedown::html_paged(
-    css = c(cssfile('unhcr-fonts'), cssfile('unhcr-page'), cssfile('unhcr')),
+    css = c(fonts_css, page_css, unhcr_css),
+    front_cover = front_img,
+    back_cover = back_img,
     ...)
 
 
