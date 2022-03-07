@@ -1,0 +1,9 @@
+{
+	"name": "ner-datafactory",
+	"location": "northeurope",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "6f30956f-c507-4144-9bb7-a73ec8276f74",
+		"tenantId": "e5c37981-6664-4134-8a0c-6543d2af80be"
+	}
+}
